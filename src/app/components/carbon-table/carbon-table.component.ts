@@ -10,8 +10,12 @@ import {
 import {
 	TableModel,
 	TableItem,
-	TableHeaderItem
+	TableHeaderItem,
+	IconService
 } from 'carbon-components-angular';
+
+// @ts-ignore
+import { Edit32 } from '@carbon/icons';
 
 
 @Component({
@@ -70,7 +74,9 @@ import {
 	// @ViewChild('downloadTemplate', { static: true }) downloadTemplate: TemplateRef<any>;
 	// @ViewChild('previewTemplate', { static: true }) previewTemplate: TemplateRef<any>;
   
-	constructor() {
+	constructor(
+		public iconService: IconService
+	) {
 		this.carbonTableModel = new TableModel();
 		this.carbonTableModel.data = [
 			[new TableItem({data: "Name 1"}), new TableItem({data: "qwer"})],
@@ -90,6 +96,8 @@ import {
 			new TableHeaderItem({data: "Name"}), new TableHeaderItem({data: "hwer" })
 		];
 		this.carbonTableModel.pageLength = 12;
+		// register icons for carbon icons ("ibmIcon")
+		this.iconService.register(Edit32);
 	}
 
 	ngOnInit() {
