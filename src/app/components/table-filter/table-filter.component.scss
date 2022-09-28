@@ -1,0 +1,71 @@
+.table-filter {
+	margin-right: 10px;
+	margin-top: 1rem;
+
+	.table-filter-top {
+		display: flex;
+		justify-content: flex-end;
+
+		.add-filter {
+			display: inline-block;
+			margin-right: .5rem;
+			margin-top: .6rem;
+			user-select: none;
+		}
+
+		.add-filter-button {
+			display: inline-block;
+		}
+	}
+
+	.table-filter-clear-all {
+		font-size: 0.7em;
+		margin-top: .4rem;
+		display: inline-block;
+	}
+
+	.table-filter-clear-all-container {
+		text-align: right;
+	}
+
+	.table-filter-filters {
+		margin: 1.5rem 0;
+
+		.remove-filter {
+			font-size: 0.7em;
+			margin-top: .4rem;
+			display: inline-block;
+		}
+	}
+
+	.table-filter-update {
+		text-align: end;
+		margin-top: 20px;
+	}
+
+	.table-filter-no-filter {
+		text-align: center;
+		color: rgb(150, 150, 150);
+		font-size: .8em;
+		margin-top: 4rem;
+	}
+}
+
+::ng-deep {
+	ibm-overflow-menu-pane .bx--overflow-menu-options--open {
+		// wide enough to show filter names without needing to use '...'
+		width: 14rem;
+
+		// this keeps the list of filters short so it doesn't push down past the bottom of the page
+		max-height: 28rem;
+		overflow-y: auto;
+
+		.bx--overflow-menu-options__option {
+			flex-shrink: 0;
+		}
+
+		.bx--overflow-menu-options__btn {
+			max-width: 14rem;
+		}
+	}
+}

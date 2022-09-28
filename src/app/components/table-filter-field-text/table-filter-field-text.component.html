@@ -1,0 +1,11 @@
+<form>
+	<ibm-label [helperText]="helpMessage">
+		{{name}}
+		<input
+			ibmText
+			(ngModelChange)="changeValue($event)"
+			name="tableFilterFieldText"
+			[size]="'sm'"
+			(keydown)="handleKeydown($event)">
+	</ibm-label>
+</form>

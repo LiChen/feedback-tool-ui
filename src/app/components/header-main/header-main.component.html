@@ -1,0 +1,28 @@
+<div id="header-main">
+	<ibm-header [route]="['/']" [name]="'IBM Feedback Tool'" brand="" class="header-main">
+		<ibm-header-global>
+			<ibm-header-action
+				id="header-main-menu-button"
+				[active]="menuButtonActive"
+				(click)="handleMenuIconClick()"
+			>
+				<svg ibmIcon="menu" size="20"></svg>
+			</ibm-header-action>
+		</ibm-header-global>
+	</ibm-header>
+
+	<div style="height: 3rem;"></div> <!--this block is to push page contents down below the header, since it overlaps-->
+
+	<ibm-panel [expanded]="menuButtonActive">
+		<ibm-switcher-list>
+			<ng-container *ngFor="let item of mainMenuItems">
+				<ibm-switcher-list-item
+					id="header-main-menu-item-{{item.label}}"
+					(click)="menuItemClick($event, item.path)"
+				>
+					{{item.label}}
+				</ibm-switcher-list-item>
+			</ng-container>
+		</ibm-switcher-list>
+	</ibm-panel>
+</div>

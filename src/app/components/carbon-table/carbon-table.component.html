@@ -1,0 +1,49 @@
+<ibm-table-container class="ibm-padding-bottom-r1 padding-top-none">
+	<ibm-table-header *ngIf="hasTableHeader" class="left-right-align-table-header">
+		<div>
+			<h4 ibmTableHeaderTitle *ngIf="tableHeader.tableTitle">{{ tableHeader.tableTitle }}</h4>
+			<p ibmTableHeaderDescription *ngIf="tableHeader.tableDescription">
+				{{ tableHeader.tableDescription }}
+			</p>
+		</div>
+	</ibm-table-header>
+
+	<ibm-table-toolbar>
+		<ibm-table-toolbar-content>
+			<ibm-table-toolbar-search
+				[tableSearch]="true"
+				[expandable]="false"
+				placeholder="Search"
+				title="Search Table"
+				[value]="searchValue"
+				(clear)="clearSearchBar()"
+				(valueChange)="searchValueChange($event)">
+			</ibm-table-toolbar-search>
+			<button
+				ibmButton="ghost"
+				[iconOnly]="true"
+				[hasAssistiveText]="true"
+				[assistiveTextPlacement]="'top'"
+				[assistiveTextAlignment]="'center'">
+				<svg class="bx--btn__icon" ibmIcon="settings" size="16"></svg>
+				<span class="bx--assistive-text">Change Category</span>
+			</button>
+		</ibm-table-toolbar-content>
+	</ibm-table-toolbar>
+	<div class="horizontal-table-scroll">
+		<ibm-table
+			[model]="carbonTableModel"
+			[stickyHeader]="stickyHeader"
+			[size]="'md'"
+			[skeleton]="skeleton"
+			[enableSingleSelect]="false"
+			[showSelectionColumn]="showSelectionColumn"
+			[striped]="striped"
+			[sortable]="sortable"
+			[isDataGrid]="isDataGrid">
+		</ibm-table>
+	</div> <!-- End horizontal-table-scroll div -->
+	<ibm-pagination *ngIf="showPagination==true" [model]="carbonTableModel" (selectPage)="selectPage($event)"></ibm-pagination>
+</ibm-table-container>
+
+

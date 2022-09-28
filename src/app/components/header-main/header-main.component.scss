@@ -1,0 +1,45 @@
+
+
+.drop-down-item {
+	font-size: 0.8em;
+}
+
+// required to undo some weird carbon default
+.pending-menu-container {
+	margin: 0;
+}
+
+
+::ng-deep {
+
+	// prevent the header title from using the mouse-over underline
+	.header-main a:hover {
+		text-decoration: none;
+	}
+
+	// using the carbon tooltip as a dropdown menu, so it needs some customization
+	ibm-tooltip {
+		// without this, the tooltip from the header adds space
+		// at the bottom of the page and messes up scrolling
+		display: inline !important;
+
+		.user-menu-options ibm-overflow-menu-option .bx--overflow-menu-options__option-content {
+			color:  lightgrey
+		}
+		.bx--tooltip.bx--tooltip--shown {
+			padding: 0;
+		}
+		.user-menu-options .bx--overflow-menu-options__option:hover {
+			background-color: darkgrey;
+		}
+		button.bx--overflow-menu-options__btn {
+			max-width: none;
+			padding-right: 1rem;
+		}
+	}
+	// need be higher than BeeHear feedback button which is 99999998
+	.bx--panel--overlay {
+		z-index: 100000000;
+	}
+}
+
