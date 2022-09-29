@@ -50,10 +50,14 @@ import { Edit32 } from '@carbon/icons';
 	striped = true;
 	isDataGrid = true;
 
+	open = false;
+
+	items = [{ content: "one" },{ content: "two", selected: true },{ content: "three" },{ content: "four" }];
+
 	// Table Title & Description
 	hasTableHeader: Boolean = true;
 	@Input() tableHeader = {
-		tableTitle: 'Data Discovery Table',
+		tableTitle: 'Feedback Discovery Table',
 		tableDescription: ''
 	};
 

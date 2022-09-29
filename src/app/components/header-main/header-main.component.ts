@@ -15,11 +15,11 @@ export class HeaderMainComponent implements OnInit {
 	) {
 		this.mainMenuItems = [
 			{
-				label: 'Discover Data',
+				label: 'Feedback Discover',
 				path: 'discover'
 			}, {
-				label: 'Approve Category',
-				path: 'dashboard'
+				label: 'Feedback Approve',
+				path: 'approve'
 			}, {
 				label: 'Logout',
 				path: 'logout'

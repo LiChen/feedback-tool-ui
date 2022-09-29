@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./page-spends.component.scss']
 })
 export class PageSpendsComponent implements OnInit {
-	
 	constructor() {
 		
 	}

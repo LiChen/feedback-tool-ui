@@ -18,8 +18,7 @@
 			<ng-container *ngFor="let item of mainMenuItems">
 				<ibm-switcher-list-item
 					id="header-main-menu-item-{{item.label}}"
-					(click)="menuItemClick($event, item.path)"
-				>
+					(click)="menuItemClick($event, item.path)">
 					{{item.label}}
 				</ibm-switcher-list-item>
 			</ng-container>

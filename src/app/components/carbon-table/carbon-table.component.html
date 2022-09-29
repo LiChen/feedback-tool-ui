@@ -19,12 +19,13 @@
 				(clear)="clearSearchBar()"
 				(valueChange)="searchValueChange($event)">
 			</ibm-table-toolbar-search>
-			<button
+			<button #trigger
 				ibmButton="ghost"
 				[iconOnly]="true"
 				[hasAssistiveText]="true"
 				[assistiveTextPlacement]="'top'"
-				[assistiveTextAlignment]="'center'">
+				[assistiveTextAlignment]="'center'"
+				(click)="open = true"e>
 				<svg class="bx--btn__icon" ibmIcon="edit" size="32"></svg>
 				<span class="bx--assistive-text">Change Category</span>
 			</button>
@@ -45,5 +46,72 @@
 	</div> <!-- End horizontal-table-scroll div -->
 	<ibm-pagination *ngIf="showPagination==true" [model]="carbonTableModel" (selectPage)="selectPage($event)"></ibm-pagination>
 </ibm-table-container>
+
+<ibm-modal [open]="open" [trigger]="trigger" (overlaySelected)="open = false">
+	<ibm-modal-header (closeSelect)="open = false" [showCloseButton]="true">
+		<p class="bx--modal-header__label bx--type-delta">Select client category</p>
+		<p class="bx--modal-header__heading bx--type-beta"></p>
+	</ibm-modal-header>
+	<div class="bx--modal-content">
+		<ibm-dropdown
+				[label]="'Label 1'"
+				[helperText]="'some help text'"
+				[size]="'md'"
+				[dropUp]="false"
+				[invalid]="false"
+				[invalidText]="'invalidText'"
+				[warn]="false"
+				[warnText]="'warnText'"
+				[theme]="'dark'"
+				placeholder="Select"
+				[disabled]="false">
+				<ibm-dropdown-list [items]="[]"></ibm-dropdown-list>
+			</ibm-dropdown>
+			<ibm-dropdown
+				[label]="'Label 2'"
+				[helperText]="'some help text'"
+				[size]="'md'"
+				[dropUp]="false"
+				[invalid]="false"
+				[invalidText]="'invalidText'"
+				[warn]="false"
+				[warnText]="'warnText'"
+				[theme]="'dark'"
+				placeholder="Select"
+				[disabled]="true">
+				<ibm-dropdown-list [items]="[]"></ibm-dropdown-list>
+			</ibm-dropdown>
+			<ibm-dropdown
+				[label]="'Label 3'"
+				[helperText]="'some help text'"
+				[size]="'md'"
+				[dropUp]="false"
+				[invalid]="false"
+				[invalidText]="'invalidText'"
+				[warn]="false"
+				[warnText]="'warnText'"
+				[theme]="'dark'"
+				placeholder="Select"
+				[disabled]="true">
+				<ibm-dropdown-list [items]="[]"></ibm-dropdown-list>
+			</ibm-dropdown>
+	</div>
+	<ibm-modal-footer>
+		<ng-container>
+			<button
+				ibmButton="secondary"
+				(click)="open = false"
+				[attr.modal-primary-focus]="false">
+				Cancel
+			</button>
+			<button
+				ibmButton="primary"
+				(click)="open = false"
+				[attr.modal-primary-focus]="true">
+				Submit Feedback
+			</button>
+		</ng-container>
+	</ibm-modal-footer>
+</ibm-modal>
 
 
