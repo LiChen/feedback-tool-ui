@@ -52,8 +52,6 @@ import { Edit32 } from '@carbon/icons';
 
 	open = false;
 
-	items = [{ content: "one" },{ content: "two", selected: true },{ content: "three" },{ content: "four" }];
-
 	// Table Title & Description
 	hasTableHeader: Boolean = true;
 	@Input() tableHeader = {
@@ -83,21 +81,14 @@ import { Edit32 } from '@carbon/icons';
 	) {
 		this.carbonTableModel = new TableModel();
 		this.carbonTableModel.data = [
-			[new TableItem({data: "Name 1"}), new TableItem({data: "qwer"})],
-			[new TableItem({data: "Name 3"}), new TableItem({data: "zwer"})],
-			[new TableItem({data: "Name 2"}), new TableItem({data: "swer"})],
-			[new TableItem({data: "Name 4"}), new TableItem({data: "twer"})],
-			[new TableItem({data: "Name 5"}), new TableItem({data: "qwer"})],
-			[new TableItem({data: "Name 6"}), new TableItem({data: "zwer"})],
-			[new TableItem({data: "Name 7"}), new TableItem({data: "swer"})],
-			[new TableItem({data: "Name 8"}), new TableItem({data: "twer"})],
-			[new TableItem({data: "Name 9"}), new TableItem({data: "qwer"})],
-			[new TableItem({data: "Name 10"}), new TableItem({data: "zwer"})],
-			[new TableItem({data: "Name 11"}), new TableItem({data: "swer"})],
-			[new TableItem({data: "Name 12"}), new TableItem({data: "twer"})]
+			[new TableItem({data: "Name 1"}), new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"})],
+			[new TableItem({data: "Name 2"}), new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"})],[new TableItem({data: "Name 3"}), new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"})],[new TableItem({data: "Name 4"}), new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"})],[new TableItem({data: "Name 5"}), new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"})],[new TableItem({data: "Name 6"}), new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"})],[new TableItem({data: "Name 7"}), new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"})],[new TableItem({data: "Name 8"}), new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"}),new TableItem({data: "qwer"})]
 		];
 		this.carbonTableModel.header = [
-			new TableHeaderItem({data: "Name"}), new TableHeaderItem({data: "hwer" })
+			new TableHeaderItem({data: "Supplier ID"}), new TableHeaderItem({data: "Supplie rName" }),
+			new TableHeaderItem({data: "Spend"}), new TableHeaderItem({data: "GL" }),
+			new TableHeaderItem({data: "Material Group"}), new TableHeaderItem({data: "Invoice text" }),
+			new TableHeaderItem({data: "PO item Text"})
 		];
 		this.carbonTableModel.pageLength = 12;
 		// register icons for carbon icons ("ibmIcon")

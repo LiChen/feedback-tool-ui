@@ -21,22 +21,29 @@ export class TableFilterComponent implements OnChanges {
 	) {
 		this.tableFilters = [
 			{
-				name: 'Division Code',
-				propName: 'divisioncode',
-				type: 'text',
-				value: '',
-				params: {
-					type: 'text'
-				}
-			}, {
-				name: 'Supplier No',
-				propName: 'supplierid',
+				name: 'Supplier',
+				propName: 'supplier',
 				type: 'text',
 				value: '',
 				params: {
 					type: 'text',
 					helpMessage: 'An exact match of the full supplier number (case sensitive) is required.'
 				}
+			}, {
+				name: 'GL Information',
+				propName: 'glinformation',
+				type: 'text',
+				value: ''
+			}, {
+				name: 'Material Group',
+				propName: 'materialgroup',
+				type: 'text',
+				value: ''
+			}, {
+				name: 'Invoice Text',
+				propName: 'invoicetext',
+				type: 'text',
+				value: ''
 			}
 		]
 	}
