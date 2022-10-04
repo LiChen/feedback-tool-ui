@@ -6,7 +6,11 @@
 			</fb-table-filter>
 		</div>
 		<div ibmCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">
-			<fb-carbon-table></fb-carbon-table>
+			<fb-carbon-table
+				[carbonTableModel]="carbonTableModel"
+				[numberOfColumns]="7"
+				[showPagination]="true"
+			></fb-carbon-table>
 		</div>
 	</div>
 </div>

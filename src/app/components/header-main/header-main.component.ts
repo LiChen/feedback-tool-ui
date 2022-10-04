@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,11 +7,20 @@ import { Router } from '@angular/router';
 	styleUrls: ['./header-main.component.scss']
 })
 export class HeaderMainComponent implements OnInit {
+	@HostListener('document:click', ['$event.target']) onClick(target: any) {
+		// this handles closing the menu when clicking outside of any part of the header element
+		if (this.menuButtonActive) {
+			if (!this.elementRef.nativeElement.contains(target)) {
+				this.menuButtonActive = false;
+			}
+		}
+	}
 	menuButtonActive = false;
 	mainMenuItems;
 
 	constructor(
-		private router: Router
+		public elementRef: ElementRef,
+		public router: Router
 	) {
 		this.mainMenuItems = [
 			{

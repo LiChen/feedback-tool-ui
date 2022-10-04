@@ -25,7 +25,7 @@
 				[hasAssistiveText]="true"
 				[assistiveTextPlacement]="'top'"
 				[assistiveTextAlignment]="'center'"
-				(click)="open = true"e>
+				(click)="changeCategory()">
 				<svg class="bx--btn__icon" ibmIcon="edit" size="32"></svg>
 				<span class="bx--assistive-text">Change Category</span>
 			</button>
@@ -33,7 +33,7 @@
 	</ibm-table-toolbar>
 	<div class="horizontal-table-scroll">
 		<ibm-table
-			[model]="carbonTableModel"
+			[model]="skeleton ? skeletonModel : carbonTableModel"
 			[stickyHeader]="stickyHeader"
 			[size]="'md'"
 			[skeleton]="skeleton"

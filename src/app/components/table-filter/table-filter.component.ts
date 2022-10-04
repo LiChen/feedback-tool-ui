@@ -17,7 +17,7 @@ export class TableFilterComponent implements OnChanges {
 	filterOptions: Array<TableFilter> = [];
 
 	constructor(
-		private tableFilterService: TableFilterService,
+		public tableFilterService: TableFilterService,
 	) {
 		this.tableFilters = [
 			{
