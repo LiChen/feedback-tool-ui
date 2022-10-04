@@ -63,7 +63,7 @@ import { Edit32 } from '@carbon/icons';
 	stickyHeader = false;
 	showSelectionColumn = true;
 	striped = true;
-	isDataGrid = true;
+	isDataGrid = false;
 	
 	constructor(
 		public iconService: IconService
@@ -89,10 +89,6 @@ import { Edit32 } from '@carbon/icons';
 		this.open = true;
 	}
 
-	refreshTable() {
-		//open modal
-	}
-
 	ngOnChanges() {
 		// LifeCycle Hook, this function will trigger when the Parent component updates @Input value
 		// console.log('in carbonTableComponent ngOnChanges() carbonTableModel:');
@@ -114,7 +110,7 @@ import { Edit32 } from '@carbon/icons';
 
 		if (this.carbonTableModel.data.length > 0) {
 			this.selectPage(1);
-			// this.tableSort(0); // sort table by first column
+			this.tableSort(0); // sort table by first column
 		}
 	}
 
@@ -145,66 +141,59 @@ import { Edit32 } from '@carbon/icons';
 		);
 	}
 
-	searchValueChange(event: any) {
+	searchValueChange(event: string) {
 		this.searchValue = event;
 			// console.log('Search Value:')
 			// console.log(this.searchValue);
 
 		if (this.searchValue === '') {
-				this.clearSearchBar();
-			} else if (this.searchValue && this.searchValue !== '') {
-				let searchString = this.searchValue.toLowerCase();
+			this.clearSearchBar();
+		} else if (this.searchValue && this.searchValue !== '') {
+			let searchString = this.searchValue.toLowerCase();
 
 			const dataFiltered = this.initialTableModel.data.filter((tableRow) => {
-			let containsValue = false;
+				let containsValue = false;
 
-			tableRow.forEach((item) => {
+				tableRow.forEach((item) => {
+					// Convert all data types to string for search string comparison
+					if (item.data !== undefined) {
+						let tmpVal;
+						if (typeof item.data === 'number') {
+							tmpVal = String(item.data).toLowerCase();
+						}
 
-				// Convert all data types to string for search string comparison
-				if (item.data !== undefined) {
-				let tmpVal;
+						if (typeof item.data === 'string') {
+							tmpVal = item.data.toLowerCase();
+						}
 
-				if (typeof item.data === 'number') {
-					tmpVal = String(item.data).toLowerCase();
-				}
-
-				if (typeof item.data === 'string') {
-					tmpVal = item.data.toLowerCase();
-				}
-
-				// In JavaScript arrays are a type of object
-				if (typeof item.data === 'object') {
-					tmpVal = Object.values(item.data).toString().toLowerCase();
-				}
-
-				// Does data string include search value?
-				if (tmpVal && tmpVal.includes(searchString)) {
-					containsValue = true;
-				}
-				}
-
+						// In JavaScript arrays are a type of object
+						if (typeof item.data === 'object') {
+							tmpVal = Object.values(item.data).toString().toLowerCase();
+						}
+						// Does data string include search value?
+						if (tmpVal && tmpVal.includes(searchString)) {
+							containsValue = true;
+						}
+					}
+				});
+				return containsValue;
 			});
 
-			return containsValue;
+			this.sortSearchTableModel.data = dataFiltered;
+			this.sortSearchTableModel.totalDataLength = dataFiltered.length;
+			this.sortSearchTableModel.currentPage = 1;
 
-		});
-
-		this.sortSearchTableModel.data = dataFiltered;
-		this.sortSearchTableModel.totalDataLength = dataFiltered.length;
-		this.sortSearchTableModel.currentPage = 1;
-
-		this.carbonTableModel.data = this.sortSearchTableModel.data;
-		this.carbonTableModel.totalDataLength = this.sortSearchTableModel.totalDataLength;
-		this.carbonTableModel.currentPage = this.sortSearchTableModel.currentPage;
-		this.selectPage(1);
-	}
+			this.carbonTableModel.data = this.sortSearchTableModel.data;
+			this.carbonTableModel.totalDataLength = this.sortSearchTableModel.totalDataLength;
+			this.carbonTableModel.currentPage = this.sortSearchTableModel.currentPage;
+			this.selectPage(1);
+		}
 	}
 
 	clearSearchBar() {
 		this.sortSearchTableModel.data = this.initialTableModel.data;
 		this.carbonTableModel.totalDataLength = this.sortSearchTableModel.data.length;
 		this.searchValue = '';
-		this.refreshTable(); // do we need this?
 		this.selectPage(1);
 	}
 
