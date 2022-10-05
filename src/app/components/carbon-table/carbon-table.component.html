@@ -17,7 +17,7 @@
 				title="Search Table"
 				[value]="searchValue"
 				(clear)="clearSearchBar()"
-				(valueChange)="searchValueChange($event)">
+				(valueChange)="search($event)">
 			</ibm-table-toolbar-search>
 			<button #trigger
 				ibmButton="ghost"
@@ -42,7 +42,7 @@
 			[striped]="striped"
 			[sortable]="sortable"
 			[isDataGrid]="isDataGrid"
-			(sort)="tableSort($event)">
+			(sort)="sort($event)">
 		</ibm-table>
 	</div> <!-- End horizontal-table-scroll div -->
 	<ibm-pagination *ngIf="showPagination==true" [model]="carbonTableModel" (selectPage)="selectPage($event)"></ibm-pagination>

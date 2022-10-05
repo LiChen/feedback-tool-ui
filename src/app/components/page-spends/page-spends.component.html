@@ -10,6 +10,9 @@
 				[carbonTableModel]="carbonTableModel"
 				[numberOfColumns]="7"
 				[showPagination]="true"
+				(tablePagination)="tablePagination($event)"
+				(tableSort)="tableSort($event)"
+				(tableSearch)="tableSearch($event)"
 			></fb-carbon-table>
 		</div>
 	</div>

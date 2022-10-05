@@ -3,7 +3,8 @@ import {
 	OnInit,
 	Input,
 	Output,
-	OnChanges
+	OnChanges,
+	EventEmitter
 } from '@angular/core';
 
 import {
@@ -54,9 +55,12 @@ import { Edit32 } from '@carbon/icons';
 	@Input() numberOfColumns: number = 2;
 	@Input() showPagination: boolean = true;
 	@Input() carbonTableModel= new TableModel(); // passed-in by parent component, also the current table view
-	initialTableModel = new TableModel(); // used to reset the table after clearing the search bar
-	sortSearchTableModel = new TableModel(); // for table search and/or sorting
-	searchValue: string = '';
+
+	@Output() tablePagination = new EventEmitter<any>();
+	@Output() tableSort = new EventEmitter<any>();
+	@Output() tableSearch = new EventEmitter<any>();
+
+	searchValue = '';
 	skeletonModel = Table.skeletonModel(6, 9);
 	skeleton = true;
 	sortable = true;
@@ -64,6 +68,8 @@ import { Edit32 } from '@carbon/icons';
 	showSelectionColumn = true;
 	striped = true;
 	isDataGrid = false;
+
+	
 	
 	constructor(
 		public iconService: IconService
@@ -81,12 +87,9 @@ import { Edit32 } from '@carbon/icons';
 		} else {
 			this.skeletonModel = Table.skeletonModel(6, 9);
 		}
-		this.buildTable();
-	}
-
-	changeCategory() {
-		//open modal
-		this.open = true;
+		if (this.carbonTableModel.data.length > 0) {
+			this.skeleton = false;
+		}
 	}
 
 	ngOnChanges() {
@@ -97,104 +100,26 @@ import { Edit32 } from '@carbon/icons';
 		// this.buildTable();
 	}
 
-	buildTable() {
-		// this.carbonTableModel.data = [];// clear out old table data
-
-		// console.log("carbon Table Model");
-		// console.log(this.carbonTableModel); // is the current VIEW of the table
-		this.skeleton = false;
-
-		this.initialTableModel.data = this.carbonTableModel.data; // used to reset the table after clearing the search bar
-		this.sortSearchTableModel.data = this.carbonTableModel.data; // for table search and/or sorting
-		this.sortSearchTableModel.totalDataLength = this.carbonTableModel.totalDataLength;
-
-		if (this.carbonTableModel.data.length > 0) {
-			this.selectPage(1);
-			this.tableSort(0); // sort table by first column
-		}
+	sort(event: number) {
+		this.tableSort.emit(event);
 	}
 
-	async tableSort(index: number) {
-		/* Important Note:
-		For single arrow sort direction icons to show
-		the sorted table model headers must be the same as table view model headers */
-		this.sortSearchTableModel.header = this.carbonTableModel.header;
-		this.sort(this.sortSearchTableModel, index);
-		this.selectPage(this.carbonTableModel.currentPage);
+	selectPage(page:number) {
+		this.tablePagination.emit(page);
 	}
 
-	sort(passedInModel: any, index: number) {
-		if (passedInModel.header[index].sorted) {
-			// if already sorted flip sorting direction
-			passedInModel.header[index].ascending = passedInModel.header[index].descending;
-		}
-		passedInModel.sort(index);
-	}
-
-	selectPage(page: number) {
-		const offset = this.carbonTableModel.pageLength * (page - 1);
-		this.carbonTableModel.currentPage = page;
-		this.carbonTableModel.totalDataLength = this.sortSearchTableModel.totalDataLength;
-		this.carbonTableModel.data = this.sortSearchTableModel.data.slice(
-			offset,
-			offset + this.carbonTableModel.pageLength
-		);
-	}
-
-	searchValueChange(event: string) {
-		this.searchValue = event;
-			// console.log('Search Value:')
-			// console.log(this.searchValue);
-
-		if (this.searchValue === '') {
-			this.clearSearchBar();
-		} else if (this.searchValue && this.searchValue !== '') {
-			let searchString = this.searchValue.toLowerCase();
-
-			const dataFiltered = this.initialTableModel.data.filter((tableRow) => {
-				let containsValue = false;
-
-				tableRow.forEach((item) => {
-					// Convert all data types to string for search string comparison
-					if (item.data !== undefined) {
-						let tmpVal;
-						if (typeof item.data === 'number') {
-							tmpVal = String(item.data).toLowerCase();
-						}
-
-						if (typeof item.data === 'string') {
-							tmpVal = item.data.toLowerCase();
-						}
-
-						// In JavaScript arrays are a type of object
-						if (typeof item.data === 'object') {
-							tmpVal = Object.values(item.data).toString().toLowerCase();
-						}
-						// Does data string include search value?
-						if (tmpVal && tmpVal.includes(searchString)) {
-							containsValue = true;
-						}
-					}
-				});
-				return containsValue;
-			});
-
-			this.sortSearchTableModel.data = dataFiltered;
-			this.sortSearchTableModel.totalDataLength = dataFiltered.length;
-			this.sortSearchTableModel.currentPage = 1;
-
-			this.carbonTableModel.data = this.sortSearchTableModel.data;
-			this.carbonTableModel.totalDataLength = this.sortSearchTableModel.totalDataLength;
-			this.carbonTableModel.currentPage = this.sortSearchTableModel.currentPage;
-			this.selectPage(1);
-		}
+	search(event: string) {
+		this.tableSearch.emit(event);
 	}
 
 	clearSearchBar() {
-		this.sortSearchTableModel.data = this.initialTableModel.data;
-		this.carbonTableModel.totalDataLength = this.sortSearchTableModel.data.length;
 		this.searchValue = '';
-		this.selectPage(1);
+		this.tableSearch.emit('');
+	}
+
+	changeCategory() {
+		//open modal
+		this.open = true;
 	}
 
 }
