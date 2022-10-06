@@ -31,23 +31,27 @@
 			Clear All Filters
 		</div>
 	</div>
-
 	<div
 		[id]="'table-filter-filters-' + filter.propName"
 		*ngFor="let filter of tableFilters"
 		class="table-filter-filters">
-
-
 		<ng-container *ngIf="filter.type === 'text'">
-			<ibm-label [helperText]="'help msg goes here'">
+			<ibm-label [helperText]="filter.params.helpMessage">
 				{{filter.name}}
 				<input
 					ibmText
-					(ngModelChange)="changeValue($event)"
 					name="tableFilterFieldText"
+					[(ngModel)]="filter.value"
 					[size]="'sm'"
+					(ngModelChange)="changeValue($event)"
 					(keydown)="handleKeydown($event)">
 			</ibm-label>
+			<!-- fb-table-filter-field-text
+				[name]="filter.name"
+				[(value)]="filter.value"
+				[helpMessage]="filter.params.helpMessage"
+				(onInputEnter)="handleFilterSubmit()"
+			></fb-table-filter-field-text -->
 		</ng-container>
 
 		<div

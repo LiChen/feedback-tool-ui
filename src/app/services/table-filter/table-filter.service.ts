@@ -52,23 +52,10 @@ export class TableFilterService {
 
 	formatFilterOptions(filterOptionsExternal: Array<any>, dataObjectName: string): Array<TableFilter> {
 		const filterOptionsFormatted: Array<TableFilter> = filterOptionsExternal.map(unformattedFilter => {
-			// if a type isn't specified, assume that it's text
-			let params: any = { type: 'text' };
-
-			// this "validate" field comes from the config.csv file. See comment in table-filter-fields.ts for larger explanation.
-			if (unformattedFilter.validate === 'boolean') {
-				params.type = 'boolean';
-			} else if (unformattedFilter.validate === 'date') {
-				params.type = 'date';
-			} else if (unformattedFilter.validate === 'number') {
-				params.type = 'number';
-			}
-
-			// BCL
-			// if (fieldParams[dataObjectName] && fieldParams[dataObjectName][unformattedFilter.prop]) {
-			// 	// if there is a field params object that matches, use that over anything else
-			// 	params = { ...params, ...fieldParams[dataObjectName][unformattedFilter.prop]};
-			// }
+			let params: any = { 
+				type: unformattedFilter.type,
+				helpMessage: unformattedFilter.helpText
+			};
 
 			return {
 				name: unformattedFilter.name,

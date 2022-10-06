@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 
 import {
 	ButtonModule,
@@ -59,6 +60,7 @@ import { TableFilterFieldTextComponent } from './components/table-filter-field-t
 		TilesModule,
 		TableModule,
 		UIShellModule,
+		FormsModule,
 
 		DropdownModule,
 		NotificationModule,

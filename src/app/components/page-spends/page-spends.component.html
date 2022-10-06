@@ -2,7 +2,8 @@
 	<div ibmRow>
 		<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
 			<fb-table-filter
-			(onUpdateFilter)="updateTableFilter()">
+			[getFilterOptions]="getTableFilterOptions"
+			(onUpdateFilter)="updateTableFilter($event)">
 			</fb-table-filter>
 		</div>
 		<div ibmCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">

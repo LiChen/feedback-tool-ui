@@ -7,6 +7,10 @@ import {
 	TableHeaderItem
 } from 'carbon-components-angular';
 
+import { SpendService } from 'src/app/services/spend/spend.service';
+import { TableFilter } from '../../services/table-filter/table-filter.service';
+
+
 @Component({
 	selector: 'fb-page-spends',
 	templateUrl: './page-spends.component.html',
@@ -17,7 +21,9 @@ export class PageSpendsComponent implements OnInit {
 	initialTableModel: TableModel; // used to reset the table after clearing the search bar
 	sortSearchTableModel:TableModel; // for table search and/or sorting
 
-	constructor() {
+	constructor(
+		public spendService: SpendService
+	) {
 		this.carbonTableModel = new TableModel();
 		this.initialTableModel = new TableModel();
 		this.sortSearchTableModel = new TableModel(); // for table search and/or sorting
@@ -47,7 +53,7 @@ export class PageSpendsComponent implements OnInit {
 
 		this.carbonTableModel.header = [
 			new TableHeaderItem({data: "Supplier ID"}),
-			new TableHeaderItem({data: "Supplie rName" }),
+			new TableHeaderItem({data: "Supplier Name" }),
 			new TableHeaderItem({data: "Spend"}),
 			new TableHeaderItem({data: "GL" }),
 			new TableHeaderItem({data: "Material Group"}),
@@ -60,9 +66,6 @@ export class PageSpendsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.tablePagination(1);
-	}
-
-	updateTableFilter() {
 	}
 
 	tablePagination(page: number) {
@@ -141,5 +144,14 @@ export class PageSpendsComponent implements OnInit {
 		this.sortSearchTableModel.data = this.initialTableModel.data;
 		this.carbonTableModel.totalDataLength = this.sortSearchTableModel.data.length;
 		this.tablePagination(1);
+	}
+
+	getTableFilterOptions = () => {
+		return this.spendService.tableHeaderConfigs;
+	}
+
+	updateTableFilter(tableFilters: Array<TableFilter>) {
+		console.log('need call API with filters');
+		// this.tableFilterService.applyFilterToBody(tableFilters, body)
 	}
 }

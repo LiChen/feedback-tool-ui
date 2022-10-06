@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter,OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { TableFilter, TableFilterService } from '../../services/table-filter/table-filter.service';
 
 @Component({
@@ -7,47 +7,23 @@ import { TableFilter, TableFilterService } from '../../services/table-filter/tab
   styleUrls: ['./table-filter.component.scss']
 })
 
-export class TableFilterComponent implements OnChanges {
+export class TableFilterComponent implements OnInit, OnChanges {
 	@Input() dataObjName: string = "spend";
 	@Input() tableKey: string = "tabName";
 	@Input() getFilterOptions: Function = ()=>{};
-	@Input() tableFilters: Array<TableFilter>;
+	@Input() tableFilters: Array<TableFilter> =[];
 	@Output() onUpdateFilter = new EventEmitter();
 
 	filterOptions: Array<TableFilter> = [];
 
 	constructor(
 		public tableFilterService: TableFilterService,
-	) {
-		this.tableFilters = [
-			{
-				name: 'Supplier',
-				propName: 'supplier',
-				type: 'text',
-				value: '',
-				params: {
-					type: 'text',
-					helpMessage: 'An exact match of the full supplier number (case sensitive) is required.'
-				}
-			}, {
-				name: 'GL Information',
-				propName: 'glinformation',
-				type: 'text',
-				value: ''
-			}, {
-				name: 'Material Group',
-				propName: 'materialgroup',
-				type: 'text',
-				value: ''
-			}, {
-				name: 'Invoice Text',
-				propName: 'invoicetext',
-				type: 'text',
-				value: ''
-			}
-		]
-	}
+	) { }
 
+
+	ngOnInit(): void {
+		this.updateFilterOptions();
+	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes['tableKey']) {
@@ -72,7 +48,7 @@ export class TableFilterComponent implements OnChanges {
 	}
 
 	updateFilter(): void {
-		this.onUpdateFilter.emit();
+		this.onUpdateFilter.emit(this.tableFilters);
 	}
 
 	handleFilterSubmit(): void {
@@ -100,10 +76,10 @@ export class TableFilterComponent implements OnChanges {
 	// }
 
 	changeValue(event: any) {
-
+		console.log('event is: ' + event);
 	}
 
 	handleKeydown(event: any) {
-
+		console.log('event is: ' + event);
 	}
 }

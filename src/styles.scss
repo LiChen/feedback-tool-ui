@@ -1,3 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 $font-path: '~carbon-components/src/globals/fonts';
 @import "~carbon-components/scss/globals/scss/styles.scss";
+
+.link-clickable {
+	cursor: pointer;
+	color:  $carbon--blue-60;
+	&:hover {
+		color: $carbon--blue-70;
+	}
+}
