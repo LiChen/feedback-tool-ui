@@ -70,16 +70,4 @@ export class TableFilterComponent implements OnInit, OnChanges {
 		this.tableFilterService.removeAllFiltersFromTab(this.tableFilters);
 		this.updateFilter();
 	}
-
-	// getDateFormatter(): Function {
-	// 	return this.dataService.formatLocalDate;
-	// }
-
-	changeValue(event: any) {
-		console.log('event is: ' + event);
-	}
-
-	handleKeydown(event: any) {
-		console.log('event is: ' + event);
-	}
 }

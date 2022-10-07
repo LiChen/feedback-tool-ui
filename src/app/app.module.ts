@@ -38,7 +38,6 @@ import { PageSpendsComponent } from './components/page-spends/page-spends.compon
 import { CarbonTableComponent } from './components/carbon-table/carbon-table.component';
 import { HeaderMainComponent } from './components/header-main/header-main.component';
 import { TableFilterComponent } from './components/table-filter/table-filter.component';
-import { TableFilterFieldTextComponent } from './components/table-filter-field-text/table-filter-field-text.component';
 
 @NgModule({
 	declarations: [
@@ -46,8 +45,7 @@ import { TableFilterFieldTextComponent } from './components/table-filter-field-t
 		PageSpendsComponent,
 		CarbonTableComponent,
 		HeaderMainComponent,
-		TableFilterComponent,
-		TableFilterFieldTextComponent,
+		TableFilterComponent
 	],
 	imports: [
 		BrowserModule,

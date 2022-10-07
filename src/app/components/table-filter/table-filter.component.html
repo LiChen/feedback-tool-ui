@@ -42,16 +42,8 @@
 					ibmText
 					name="tableFilterFieldText"
 					[(ngModel)]="filter.value"
-					[size]="'sm'"
-					(ngModelChange)="changeValue($event)"
-					(keydown)="handleKeydown($event)">
+					[size]="'sm'">
 			</ibm-label>
-			<!-- fb-table-filter-field-text
-				[name]="filter.name"
-				[(value)]="filter.value"
-				[helpMessage]="filter.params.helpMessage"
-				(onInputEnter)="handleFilterSubmit()"
-			></fb-table-filter-field-text -->
 		</ng-container>
 
 		<div
