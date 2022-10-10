@@ -50,39 +50,58 @@
 
 <ibm-modal [open]="open" [trigger]="trigger" (overlaySelected)="open = false">
 	<ibm-modal-header (closeSelect)="open = false" [showCloseButton]="true">
-		<p class="bx--modal-header__label bx--type-delta">Select client category</p>
+		<p class="bx--modal-header__label bx--type-delta"></p>
 		<p class="bx--modal-header__heading bx--type-beta"></p>
 	</ibm-modal-header>
-	<div class="bx--modal-content">
-		<ibm-dropdown
-				[label]="'Label 1'"
-				[helperText]="'some help text'"
-				[size]="'md'"
-				[dropUp]="false"
-				[invalid]="false"
-				[invalidText]="'invalidText'"
-				[warn]="false"
-				[warnText]="'warnText'"
-				[theme]="'dark'"
-				placeholder="Select"
-				[disabled]="false">
-				<ibm-dropdown-list [items]="[]"></ibm-dropdown-list>
-			</ibm-dropdown>
-			<ibm-dropdown
-				[label]="'Label 2'"
-				[helperText]="'some help text'"
-				[size]="'md'"
-				[dropUp]="false"
-				[invalid]="false"
-				[invalidText]="'invalidText'"
-				[warn]="false"
-				[warnText]="'warnText'"
-				[theme]="'dark'"
-				placeholder="Select"
-				[disabled]="true">
-				<ibm-dropdown-list [items]="[]"></ibm-dropdown-list>
-			</ibm-dropdown>
-			<ibm-dropdown
+	<section class="bx--modal-content">
+		<div style="width: auto">
+			<ibm-combo-box
+					[disabled]="false"
+					[invalid]="false"
+					[size]="'md'"
+					[invalidText]="''"
+					[label]="'Select Client: '"
+					[helperText]="''"
+					[items]="clientOptions"
+					[theme]="'light'"
+					[type]="'single'"
+					[placeholder]="'Type to filter category'"
+					(selected)="onSelected('client')"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+			<ibm-combo-box
+					[disabled]="categoryDisabled"
+					[invalid]="false"
+					[size]="'md'"
+					[invalidText]="''"
+					[label]="'Select Client Category: '"
+					[helperText]="''"
+					[items]="categoryOptions"
+					[theme]="'light'"
+					[type]="'single'"
+					[placeholder]="'Type to filter UNSPSC codes'"
+					(selected)="onSelected('category')"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+			<ibm-combo-box
+					[disabled]="unspscDisabled"
+					[invalid]="false"
+					[size]="'md'"
+					[invalidText]="''"
+					[label]="'Select UNSPSC Codes: '"
+					[helperText]="''"
+					[items]="unspscOptions"
+					[theme]="'light'"
+					[type]="'single'"
+					[placeholder]="'Type to filter UNSPSC codes'"
+					(selected)="onSelected('unspsc')"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+
+			<!-- ibm-dropdown
 				[label]="'Label 3'"
 				[helperText]="'some help text'"
 				[size]="'md'"
@@ -93,10 +112,12 @@
 				[warnText]="'warnText'"
 				[theme]="'dark'"
 				placeholder="Select"
+				[appendInline]="true"
 				[disabled]="true">
 				<ibm-dropdown-list [items]="[]"></ibm-dropdown-list>
-			</ibm-dropdown>
-	</div>
+			</ibm-dropdown -->
+		</div>
+	</section>
 	<ibm-modal-footer>
 		<ng-container>
 			<button
@@ -113,6 +134,7 @@
 			</button>
 		</ng-container>
 	</ibm-modal-footer>
+
 </ibm-modal>
 
 
