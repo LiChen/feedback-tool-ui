@@ -1,0 +1,88 @@
+<ibm-modal [open]="spendService.showFeedbackSubmit" (overlaySelected)="onCloseFeedbackModal()">
+	<ibm-modal-header (closeSelect)="onCloseFeedbackModal()" [showCloseButton]="true">
+		<p class="bx--modal-header__label bx--type-delta"></p>
+		<p class="bx--modal-header__heading bx--type-beta"></p>
+	</ibm-modal-header>
+	<section class="bx--modal-content">
+		<div style="width: auto">
+			<ibm-combo-box
+					[disabled]="false"
+					[invalid]="false"
+					[size]="'md'"
+					[invalidText]="''"
+					[label]="'Select Client: '"
+					[helperText]="''"
+					[items]="clientOptions"
+					[theme]="'light'"
+					[type]="'single'"
+					[placeholder]="'Type to filter category'"
+					(selected)="onSelected($event, 'client')"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+			<ibm-combo-box
+					[disabled]="categoryDisabled"
+					[invalid]="false"
+					[size]="'md'"
+					[invalidText]="''"
+					[label]="'Select Client Category: '"
+					[helperText]="''"
+					[items]="categoryOptions"
+					[theme]="'light'"
+					[type]="'single'"
+					[placeholder]="'Type to filter UNSPSC codes'"
+					(selected)="onSelected($event, 'category')"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+			<ibm-combo-box
+					[disabled]="unspscDisabled"
+					[invalid]="false"
+					[size]="'md'"
+					[invalidText]="''"
+					[label]="'Select UNSPSC Codes: '"
+					[helperText]="''"
+					[items]="unspscOptions"
+					[theme]="'light'"
+					[type]="'single'"
+					[placeholder]="'Type to filter UNSPSC codes'"
+					(selected)="onSelected($event, 'unspsc')"
+					(search)="onSearch($event)">
+					<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+
+			<!-- ibm-dropdown
+				[label]="'Label 3'"
+				[helperText]="'some help text'"
+				[size]="'md'"
+				[dropUp]="false"
+				[invalid]="false"
+				[invalidText]="'invalidText'"
+				[warn]="false"
+				[warnText]="'warnText'"
+				[theme]="'dark'"
+				placeholder="Select"
+				[appendInline]="true"
+				[disabled]="true">
+				<ibm-dropdown-list [items]="[]"></ibm-dropdown-list>
+			</ibm-dropdown -->
+		</div>
+	</section>
+	<ibm-modal-footer>
+		<ng-container>
+			<button
+				ibmButton="secondary"
+				(click)="onCloseFeedbackModal()"
+				[attr.modal-primary-focus]="false">
+				Cancel
+			</button>
+			<button
+				ibmButton="primary"
+				(click)="onSubmit()"
+				[attr.modal-primary-focus]="true">
+				Submit Feedback
+			</button>
+		</ng-container>
+	</ibm-modal-footer>
+
+</ibm-modal>

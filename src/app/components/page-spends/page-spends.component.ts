@@ -4,11 +4,14 @@ import * as _ from 'lodash';
 import {
 	TableModel,
 	TableItem,
-	TableHeaderItem
+	TableHeaderItem,
+	IconService
 } from 'carbon-components-angular';
 
 import { SpendService } from 'src/app/services/spend/spend.service';
 import { TableFilter } from '../../services/table-filter/table-filter.service';
+// @ts-ignore
+import { CurrencyDollar24, ShoppingCart24, Layers24, Document24} from '@carbon/icons';
 
 
 @Component({
@@ -22,7 +25,8 @@ export class PageSpendsComponent implements OnInit {
 	sortSearchTableModel:TableModel; // for table search and/or sorting
 
 	constructor(
-		public spendService: SpendService
+		public spendService: SpendService,
+		public iconService: IconService
 	) {
 		this.carbonTableModel = new TableModel();
 		this.initialTableModel = new TableModel();
@@ -62,6 +66,7 @@ export class PageSpendsComponent implements OnInit {
 		];
 		this.carbonTableModel.pageLength = 3;
 		this.carbonTableModel.totalDataLength = 8;
+		this.iconService.registerAll([CurrencyDollar24, ShoppingCart24, Layers24, Document24]);
 	}
 
 	ngOnInit(): void {
@@ -153,5 +158,12 @@ export class PageSpendsComponent implements OnInit {
 	updateTableFilter(tableFilters: Array<TableFilter>) {
 		console.log('need call API with filters');
 		// this.tableFilterService.applyFilterToBody(tableFilters, body)
+	}
+
+	onFeedbackModify() {
+		this.spendService.selectedSpendRows = this.carbonTableModel.data.filter( (tableRow, i) => {
+			return this.carbonTableModel.rowsSelected[i];
+		})
+		this.spendService.showFeedbackSubmit = true;
 	}
 }

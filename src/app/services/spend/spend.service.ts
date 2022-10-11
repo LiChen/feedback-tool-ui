@@ -57,5 +57,8 @@ export class SpendService {
 		}
 	];
 
+	showFeedbackSubmit = false;
+	selectedSpendRows: Array<Object> = [];
+
 	constructor() { }
 }

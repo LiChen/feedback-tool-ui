@@ -1,4 +1,19 @@
 <div ibmGrid>
+	<div ibmRow class="summary">
+		<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection"></div>
+		<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
+			<svg class="bx--btn__icon" ibmIcon="currency--dollar" size="24"></svg> Spend 49.8B
+		</div>
+		<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
+			<svg class="bx--btn__icon" ibmIcon="shopping--cart" size="24"></svg> Supplier Counts 34,622
+		</div>
+		<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
+			<svg class="bx--btn__icon" ibmIcon="layers" size="24"></svg> Invoice Count 1,154,100
+		</div>
+		<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
+			<svg class="bx--btn__icon" ibmIcon="document" size="24"></svg> PO Count 1,595,304
+		</div>
+	</div>
 	<div ibmRow>
 		<div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
 			<fb-table-filter
@@ -14,9 +29,12 @@
 				(tablePagination)="tablePagination($event)"
 				(tableSort)="tableSort($event)"
 				(tableSearch)="tableSearch($event)"
+				(feedbackModify)="onFeedbackModify()"
 			></fb-carbon-table>
 		</div>
 	</div>
 </div>
+
+<fb-modal-feedback-submit *ngIf="spendService.showFeedbackSubmit"></fb-modal-feedback-submit>
 
 

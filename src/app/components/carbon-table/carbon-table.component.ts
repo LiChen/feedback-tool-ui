@@ -42,8 +42,6 @@ import { Edit32 } from '@carbon/icons';
 
 	title = 'IBM Feedback Tool';
 
-	open = false;
-
 	// Table Title & Description
 	hasTableHeader: Boolean = true;
 	@Input() tableHeader = {
@@ -59,6 +57,7 @@ import { Edit32 } from '@carbon/icons';
 	@Output() tablePagination = new EventEmitter<any>();
 	@Output() tableSort = new EventEmitter<any>();
 	@Output() tableSearch = new EventEmitter<any>();
+	@Output() feedbackModify = new EventEmitter<any>();
 
 	searchValue = '';
 	skeletonModel = Table.skeletonModel(6, 9);
@@ -69,60 +68,11 @@ import { Edit32 } from '@carbon/icons';
 	striped = true;
 	isDataGrid = false;
 
-	clientOptions: Array<any>;
-	categoryOptions: Array<any>;
-	unspscOptions: Array<any>;
-
-	categoryDisabled = true;
-	unspscDisabled = true;
-
 	constructor(
 		public iconService: IconService
 	) {
 		// register icons for carbon icons ("ibmIcon")
 		this.iconService.register(Edit32);
-		this.clientOptions = [
-			{
-				id: 'c1',
-				content: 'Coco Cola'
-			}, {
-				id: 'c2',
-				content: 'Bank of America'
-			}, {
-				id: 'c3',
-				content: 'Costco Wholesale'
-			}
-		];
-		this.categoryOptions = [
-			{
-				id: 'prs4',
-				content: 'Personal Relocation Services L4'
-			}, {
-				id: 'ppe3',
-				content: 'Personal Protective Equipment (L3)'
-			}, {
-				id: 'ppe4',
-				content: 'Personal Protective Equipment (L4)'
-			}
-		];
-		this.unspscOptions = [
-			{
-				id: 'unspsc1',
-				content: 'Ear Gauge Measuring Device (L4)'
-			}, {
-				id: 'unspsc2',
-				content: 'Respiratory Protection (L3)'
-			}, {
-				id: 'unspsc23',
-				content: 'Mask or Accesories (L4)'
-			}, {
-				id: 'unspsc4',
-				content: 'Respirators (L4)'
-			}, {
-				id: 'unspsc5',
-				content: 'Gas Masks (L4)'
-			}
-		]
 	}
 
 	ngOnInit() {
@@ -165,24 +115,8 @@ import { Edit32 } from '@carbon/icons';
 	}
 
 	changeCategory() {
-		//open modal
-		this.open = true;
+		this.feedbackModify.emit();
 	}
 
-	handleSelection(event: any) {
-
-	}
-
-	onSelected(optionType: string) {
-		if (optionType === 'client') {
-			this.categoryDisabled = false;
-			this.unspscDisabled = true;
-		} else if (optionType === 'category') {
-			this.unspscDisabled = false;
-		}
-	}
-
-	onSearch(event: any) {
-	}
 }
 
