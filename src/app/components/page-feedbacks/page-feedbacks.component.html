@@ -16,6 +16,77 @@
 	</div>
 	<div>
 		<div ibmCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">
+			<ibm-table-container class="ibm-padding-bottom-r1 padding-top-none">
+				<ibm-table-header class="left-right-align-table-header">
+					<div>
+						<h4 ibmTableHeaderTitle *ngIf="tableHeader.tableTitle">{{ tableHeader.tableTitle }}</h4>
+						<p ibmTableHeaderDescription *ngIf="tableHeader.tableDescription">
+							{{ tableHeader.tableDescription }}
+						</p>
+					</div>
+				</ibm-table-header>
+			
+				<ibm-table-toolbar>
+					<div style="width: 450px;">
+						<ibm-combo-box
+							[invalid]="false"
+							[invalidText]="''"
+							[label]="''"
+							[size]="'md'"
+							[helperText]="''"
+							placeholder="CEP L1 Tower New "
+							[appendInline]="false"
+							[items]="[]"
+							[theme]="'light'"
+							[selectionFeedback]="'top-after-reopen'"
+							type="multi"
+							(selected)="selected($event)"
+							(submit)="submit($event)">
+							<ibm-dropdown-list></ibm-dropdown-list>
+						</ibm-combo-box>
+					</div>
+					<div style="width: 450px; margin-left: 0.5rem;">
+						<ibm-combo-box
+							[invalid]="false"
+							[invalidText]="''"
+							[label]="''"
+							[size]="'md'"
+							[helperText]="''"
+							placeholder="CCEP L2 Category New"
+							[appendInline]="false"
+							[items]="[]"
+							[theme]="'light'"
+							[selectionFeedback]="'top-after-reopen'"
+							type="multi"
+							(selected)="selected($event)"
+							(submit)="submit($event)">
+							<ibm-dropdown-list></ibm-dropdown-list>
+						</ibm-combo-box>
+					</div>
+					<ibm-table-toolbar-content>
+
+						<button
+							ibmButton="primary"
+							[iconOnly]="true"
+							[hasAssistiveText]="true"
+							[assistiveTextPlacement]="'top'"
+							[assistiveTextAlignment]="'center'"
+							(click)="onApprove()">
+							<!-- svg class="bx--btn__icon" ibmIcon="edit" size="32"></svg>
+							<span class="bx--assistive-text">Modify Category</span -->
+								Approve
+						</button>
+						<button
+							ibmButton="secondary"
+							[iconOnly]="true"
+							[hasAssistiveText]="true"
+							[assistiveTextPlacement]="'top'"
+							[assistiveTextAlignment]="'center'"
+							(click)="onReject()">
+								Reject
+						</button>
+					</ibm-table-toolbar-content>
+				</ibm-table-toolbar>
 			<fb-carbon-table
 				[tableHeader]="tableHeader"
 				[carbonTableModel]="carbonTableModel"
@@ -26,6 +97,7 @@
 				(tableSearch)="tableSearch($event)"
 				(feedbackModify)="onFeedbackModify()"
 			></fb-carbon-table>
+			</ibm-table-container>
 		</div>
 	</div>
 </div>

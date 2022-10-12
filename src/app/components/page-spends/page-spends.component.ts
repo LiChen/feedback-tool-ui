@@ -24,6 +24,7 @@ export class PageSpendsComponent implements OnInit {
 	initialTableModel: TableModel; // used to reset the table after clearing the search bar
 	sortSearchTableModel:TableModel; // for table search and/or sorting
 
+	searchValue = '';
 	tableHeader = {
 		tableTitle: 'Feedback Discovery Table',
 		tableDescription: ''
@@ -170,5 +171,10 @@ export class PageSpendsComponent implements OnInit {
 			return this.carbonTableModel.rowsSelected[i];
 		})
 		this.spendService.showFeedbackSubmit = true;
+	}
+
+	clearSearchBar() {
+		this.searchValue = '';
+		this.tableSearch('');
 	}
 }

@@ -105,18 +105,5 @@ import { Edit32 } from '@carbon/icons';
 		this.tablePagination.emit(page);
 	}
 
-	search(event: string) {
-		this.tableSearch.emit(event);
-	}
-
-	clearSearchBar() {
-		this.searchValue = '';
-		this.tableSearch.emit('');
-	}
-
-	changeCategory() {
-		this.feedbackModify.emit();
-	}
-
 }
 

@@ -180,4 +180,12 @@ export class PageFeedbacksComponent implements OnInit {
 
 	}
 
+	onReject() {
+
+	}
+
+	onApprove() {
+
+	}
+
 }
