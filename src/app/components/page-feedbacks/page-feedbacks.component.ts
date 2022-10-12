@@ -11,21 +11,21 @@ import {
 import { SpendService } from 'src/app/services/spend/spend.service';
 import { TableFilter } from '../../services/table-filter/table-filter.service';
 // @ts-ignore
-import { CurrencyDollar24, ShoppingCart24, Layers24, Document24} from '@carbon/icons';
-
+import { CurrencyDollar24, ShoppingCart24, SendAlt24, Hourglass24} from '@carbon/icons';
 
 @Component({
-	selector: 'fb-page-spends',
-	templateUrl: './page-spends.component.html',
-	styleUrls: ['./page-spends.component.scss']
+  selector: 'fb-page-feedbacks',
+  templateUrl: './page-feedbacks.component.html',
+  styleUrls: ['./page-feedbacks.component.scss']
 })
-export class PageSpendsComponent implements OnInit {
+export class PageFeedbacksComponent implements OnInit {
+
+
 	carbonTableModel: TableModel;
 	initialTableModel: TableModel; // used to reset the table after clearing the search bar
 	sortSearchTableModel:TableModel; // for table search and/or sorting
-
 	tableHeader = {
-		tableTitle: 'Feedback Discovery Table',
+		tableTitle: 'Feedback Approval Table',
 		tableDescription: ''
 	};
 
@@ -71,7 +71,7 @@ export class PageSpendsComponent implements OnInit {
 		];
 		this.carbonTableModel.pageLength = 3;
 		this.carbonTableModel.totalDataLength = 8;
-		this.iconService.registerAll([CurrencyDollar24, ShoppingCart24, Layers24, Document24]);
+		this.iconService.registerAll([CurrencyDollar24, ShoppingCart24, SendAlt24, Hourglass24]);
 	}
 
 	ngOnInit(): void {
@@ -171,4 +171,13 @@ export class PageSpendsComponent implements OnInit {
 		})
 		this.spendService.showFeedbackSubmit = true;
 	}
+
+	selected(event: any) {
+
+	}
+
+	submit(event: any) {
+
+	}
+
 }

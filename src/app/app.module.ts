@@ -39,6 +39,7 @@ import { CarbonTableComponent } from './components/carbon-table/carbon-table.com
 import { HeaderMainComponent } from './components/header-main/header-main.component';
 import { TableFilterComponent } from './components/table-filter/table-filter.component';
 import { ModalFeedbackSubmitComponent } from './components/modal-feedback-submit/modal-feedback-submit.component';
+import { PageFeedbacksComponent } from './components/page-feedbacks/page-feedbacks.component';
 
 @NgModule({
 	declarations: [
@@ -47,7 +48,8 @@ import { ModalFeedbackSubmitComponent } from './components/modal-feedback-submit
 		CarbonTableComponent,
 		HeaderMainComponent,
 		TableFilterComponent,
-  ModalFeedbackSubmitComponent
+  ModalFeedbackSubmitComponent,
+  PageFeedbacksComponent
 	],
 	imports: [
 		BrowserModule,
